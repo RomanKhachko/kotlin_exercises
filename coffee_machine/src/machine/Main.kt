@@ -16,7 +16,7 @@ class CoffeeMachine {
     enum class State(val stateDirections: String) {
         CHOOSING_ACTION("Write action (buy, fill, take, remaining, exit):") {
             override fun processInput(input: String, coffeeMachine: CoffeeMachine) =
-                    coffeeMachine.handle_action(Action.getAction(input))
+                    coffeeMachine.handleAction(Action.getAction(input))
 
         },
         BUYING_COFFEE("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:") {
@@ -116,14 +116,14 @@ class CoffeeMachine {
         this.cups += cups
     }
 
-    private fun handle_action(action: Action) {
+    private fun handleAction(action: Action) {
         when (action) {
             Action.BUY -> currentState = State.BUYING_COFFEE
             Action.FILL -> currentState = State.FILLING_WATER
             Action.TAKE -> take()
             Action.REMAINING -> printMachineState()
             Action.EXIT -> isActive = false
-            else -> println("Unsupported operation")
+            Action.UNSUPPORTED_ACTION -> println("Unsupported operation")
         }
     }
 
@@ -187,3 +187,4 @@ fun main() {
         coffeeMachine.action(input)
     }
 }
+
