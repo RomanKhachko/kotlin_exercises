@@ -31,6 +31,7 @@ object SearchEngine {
     }
 
     private fun hashRecords() {
+        index.clear()
         for (i in 0..records.lastIndex) {
             for (recordComponent in records[i].split(" ")) {
                 val key = recordComponent.toLowerCase()
@@ -84,3 +85,4 @@ fun processMenu(): Boolean {
     }
     return operationResult
 }
+
