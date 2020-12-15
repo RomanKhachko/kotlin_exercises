@@ -9,7 +9,7 @@ object SearchEngine {
     var records = emptyList<String>()
         set(value) {
             field = value
-            hashRecords()
+            indexRecords()
         }
     private val index = mutableMapOf<String, MutableSet<Int>>()
 
@@ -30,7 +30,7 @@ object SearchEngine {
         return lineIndexes
     }
 
-    private fun hashRecords() {
+    private fun indexRecords() {
         index.clear()
         for (i in 0..records.lastIndex) {
             for (recordComponent in records[i].split(" ")) {
